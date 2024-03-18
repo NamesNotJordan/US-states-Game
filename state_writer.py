@@ -14,8 +14,3 @@ class StateWriter(Turtle):
     def write_state(self, state_name, x, y):
         self.goto(x, y)
         self.write(state_name, align=ALIGNMENT)
-    
-    
-    def write_win(self):
-        self.goto(0,0)
-        self.write("You named all 50 states!", align=ALIGNMENT)
