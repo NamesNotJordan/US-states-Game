@@ -21,6 +21,11 @@ data = pandas.read_csv("50_states.csv")
 game_on = True
 while game_on:
     answer_state = screen.textinput(title="Name a State", prompt="Take a guess").title()
+    if answer_state == "Exit":
+        break
+    if answer_state in correct_answers:
+        continue
+
     scoreboard.add_to_guesses()
 
     if answer_state in data["state"].array:
@@ -30,8 +35,7 @@ while game_on:
         state_writer.write_state(answer_state,int(state_data["x"]),int(state_data["y"]))
     
     scoreboard.update_score()
-    
+
     if scoreboard.has_guessed_all_states():
         state_writer.write_win()
-
-turtle.mainloop
+        game_on = False
