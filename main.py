@@ -1,0 +1,29 @@
+import pandas
+import turtle
+from state_writer import StateWriter
+
+#Build screen
+screen = turtle.Screen()
+screen.title("Name the States")
+image = "blank_states_img.gif"
+screen.addshape(image)
+turtle.shape(image)
+
+
+state_writer = StateWriter()
+correct_answers = []
+# Pandas stuff
+data = pandas.read_csv("50_states.csv")
+
+
+game_on = True
+while game_on:
+    answer_state = screen.textinput(title="Name a State", prompt="Take a guess").title()
+    if answer_state in data["state"].array:
+        correct_answers.append(answer_state)
+        state_data = data[data["state"] == answer_state]
+        state_writer.write_state(answer_state,int(state_data["x"]),int(state_data["y"]))
+    if score == 50:
+        state_writer.write_win()
+
+turtle.mainloop
